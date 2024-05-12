@@ -1,5 +1,5 @@
 var path = require('path');
-const config = require('../../../../front-end/config');
+const config = require('../../config');
 // var db = require('./../../backend/db');
 var moment = require('moment');
 var async = require("async");
@@ -8,13 +8,13 @@ const fs = require('fs');
 
 const {Client} = require('@elastic/elasticsearch');
 const elasticsearchClient = new Client({
-node: 'https://localhost:9200',
+node: 'https://elasticsearch:9200',
   auth: {
     username: 'elastic',
     password: 'U6pOoJanL=jGzV6F67lq'
   },
   tls: {
-    ca: fs.readFileSync('/Users/sohaib/Documents/karam/obsalytics_pipeline/elastic-search/certs/http_ca.crt'),
+    ca: fs.readFileSync('/app/sharedVolume/certs/http_ca.crt'),
     rejectUnauthorized: false
   }});
 

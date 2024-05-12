@@ -30,7 +30,8 @@
     "nodemon": "latest",
     "socket.io": "latest",
     "to": "latest",
-    "update": "latest"
+    "update": "latest",
+    "dotenv": "latest"
   },
   "devDependencies": {}
 }

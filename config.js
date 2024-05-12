@@ -10,7 +10,7 @@ const config = {
   },
   elasticsearch: {
     server: {
-      host: 'https://localhost',
+      host: 'https://elasticsearch',
       port: 9200,
       user: 'elastic',
       password: 'U6pOoJanL=jGzV6F67lq'

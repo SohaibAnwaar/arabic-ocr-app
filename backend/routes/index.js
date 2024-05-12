@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-const config = require('../../../../front-end/config');
+const config = require('../../config');
 // var db = require('./../../backend/db');
 var moment = require('moment');
 var async = require("async");
