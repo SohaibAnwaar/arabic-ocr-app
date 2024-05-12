@@ -1,0 +1,80 @@
+<?
+<!--/* if(pagination.totalPages!=1){ */-->
+?>
+
+<? if(pagination.totalPages > 1){ ?>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+
+        <? if(pagination.currentPageNo!=1){?>
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo=1'?>">
+                <span>&laquo;</span>
+                <span class="sr-only">First</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo='+ (pagination.currentPageNo-1)?>">
+                <span>‹</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+
+
+        <?}?>
+
+
+        <? var p =pagination.currentPageNo-3;
+        p = (p>=1)?p:1;
+        for(var p = p, i=0; p <= (pagination.currentPageNo-1) && i <=3 ; p++, i++) {?>
+        <? if(i==0 && (p!=1)){?>
+        <li class="page-item disabled">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo='+p ?>">...</a>
+        </li>
+        <?}?>
+
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo='+p ?>"><?= p;?></a>
+        </li>
+        <?}?>
+
+
+        <li class="page-item active">
+            <a class="page-link"
+               href="<?= pagination.baseUrl + pagination.currentPageNo;?>"><?= pagination.currentPageNo;?></a>
+        </li>
+
+        <? for(var p = pagination.currentPageNo+1, i = 0; p<=pagination.totalPages && i < 3 ; p++, i++) {?>
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo='+p ?>"><?= p;?></a>
+        </li>
+
+        <? if(i==2 && (p+1)<= pagination.totalPages){?>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">...</a>
+        </li>
+        <?}?>
+
+        <?}?>
+
+
+        <? if(pagination.currentPageNo != pagination.totalPages){?>
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo=' + (pagination.currentPageNo+1) ?>">
+                <span>›</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="<?= pagination.baseUrl + '&pageNo=' + pagination.totalPages ?>">
+                <span>&raquo;</span>
+                <span class="sr-only">Last</span>
+            </a>
+        </li>
+        <?}?>
+
+
+    </ul>
+</nav>
+<?}?>

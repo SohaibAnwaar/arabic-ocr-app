@@ -1,0 +1,109 @@
+<div class="container">
+
+
+    <div class="row search-form-container">
+        <div class="col-md-12">
+
+            <figure style="background: #eee; padding: 10px;">
+
+
+                <form class="form" action="/search" method="GET">
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <div class="form-group">
+                                <label for="searchTextType">Search Type</label>
+                                <select class="form-control" id="searchTextType" name="searchTextType">
+                                    <option value="standardFullTextSearch"
+                                    <?= (query.searchTextType=='standardFullTextSearch')?'selected':'' ?>
+                                    >Standard Full Text</option>
+
+                                    <option value="exactMatchSearch"
+                                    <?= (query.searchTextType=='exactMatchSearch')?'selected':'' ?>
+                                    >Exact Match</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="searchTextType">Search Text</label>
+                            <input type="text" name="q" class="form-control mb-2 mr-sm-2 " id="main-search-text-input"
+                                   placeholder="Search" value="<?= query.q; ?>">
+
+                        </div>
+
+                        <div class="form-group col-md-4" style="margin-top: 21px;">
+                            <button type="submit" class="btn btn-primary mb-2" style="width: 100px;">Submit</button>
+                            <a href="/" class="btn btn-secondary mb-2 ml-5">Reset</a>
+                        </div>
+
+                        <div class="form-group col-md-2" style="margin-top: 21px;">
+                            <button  type="button" class="btn btn-info mb-2 float-right" id="reIndexDataBtn">
+                                ReIndex Data
+                                <span class="spinner-grow spinner-grow-sm" style="display: none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row <?= (query.searchTextType=='standardFullTextSearch')?'':'hidden' ?>" id="StandardFullTextSearchOptions">
+
+                        <div class="form-group col-md-2">
+                            <label for="sft_boolean_operator">Boolean Operator</label>
+                            <select id="sft_boolean_operator" class="form-control" name="sft_boolean_operator">
+                                <option selected value="OR" <?= (query.sft_boolean_operator=='OR')?'selected':'' ?>>OR</option>
+                                <option value="AND" <?= (query.sft_boolean_operator=='AND')?'selected':'' ?>>AND</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="sft_Fuzziness">Fuzziness</label>
+                            <select class="form-control" id="sft_fuzziness" name="sft_fuzziness">
+                                <option selected value="AUTO"
+                                <?= (query.sft_fuzziness=='AUTO')?'selected':'' ?>>AUTO</option>
+                                <option value="0"
+                                <?= (query.sft_fuzziness=='0')?'selected':'' ?>>0</option>
+                                <option value="1"
+                                <?= (query.sft_fuzziness=='1')?'selected':'' ?>>1</option>
+                                <option value="2"
+                                <?= (query.sft_fuzziness=='2')?'selected':'' ?>>2</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <div class="form-check" style="margin: 35px 0 0 0; text-align: center">
+                                <input class="form-check-input" type="checkbox"
+                                <?= (query.searchTextType==undefined || query.sft_fuzzy_transpositions=='on')?'checked':'' ?>
+                                id="sft_fuzzy_transpositions" name="sft_fuzzy_transpositions">
+                                <label class="form-check-label" for="sft_fuzzy_transpositions">
+                                    Fuzzy Transpositions
+                                </label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-row <?= (query.searchTextType=='standardFullTextSearch')?'hidden':'' ?>" id="exactMatchSearchOptions">
+                        <div class="form-group col-md-1">
+                            <label for="ems_slop">Slop</label>
+                            <input id="ems_slop" name="ems_slop" type="number" min="0" max="9"
+                                   class="form-control mb-2 mr-sm-2"
+                                   value="<?= (query.ems_slop!=undefined)?query.ems_slop:'0' ?>">
+                        </div>
+                    </div>
+
+
+                    <!--                    <button type="submit" class="btn btn-primary mb-2">Submit</button>-->
+                </form>
+            </figure>
+
+        </div>
+    </div>
+
+
+</div>

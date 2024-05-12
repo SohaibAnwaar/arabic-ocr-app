@@ -1,0 +1,73 @@
+<?- include ("../partials/header.ejs") ?>
+
+
+
+<?- include ("./partials/main-form.ejs") ?>
+
+
+<main role="main" class="container ">
+
+   <div class="search-results-container">
+
+        <div class="row mt-4 search-result-type-wrapper person">
+            <div class="col-md-12">
+                <h4>
+                    <?= resultData.entityTypeHeading; ?> <a
+                            href="/search/<?= resultData.entityType ?>/<?= resultData.searchTerm ?>/1"
+                            class="search-count-text">[found <?= resultData.searchData.pagination.totalRowsCount?>
+                        times]</a>
+                </h4>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <? resultData.searchData.rows.forEach(function(rowDatum){?>
+
+                <div class="row-search-result-wrapper">
+
+
+                   <a href="/search-doc/<?= rowDatum.id ?>?<?= resultData.searchData.pagination.onlyQueryParams ?>" class="search-result-link" target="_blank">
+                        <?= rowDatum.heading?>
+                       <span class="ml-2" style="font-size: 10px;">Score: <?= rowDatum.searchScore?></span>
+                    </a>
+
+                    <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+                </div>
+
+                <? });?>
+
+
+                <div class="mt-3">
+                    <?- include('./../partials/pagination', {pagination: resultData.searchData.pagination}); ?>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+<?- include ("../partials/footer.ejs", {
+    jsFilesToInclude: [
+            "https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"
+        ]
+}) ?>
+
+
+<script>
+  // $(function () {
+  //   $(".search-results-container em").mark('<?= resultData.searchTerm?>', {
+  //     debug: false,
+  //     diacritics: true,
+  //     separateWordSearch: false
+  //   });
+  // })
+</script>

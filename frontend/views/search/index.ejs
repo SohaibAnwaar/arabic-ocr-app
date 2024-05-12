@@ -1,0 +1,227 @@
+<?- include ("../partials/header.ejs") ?>
+
+
+<main role="main" class="container ">
+
+    <div class="row">
+        <div class="col-md-12 ml-auto">
+            <h1><?= globalHelperFn.lang('Search', session.user.lang); ?></h1>
+        </div>
+
+        <div class="col-md-5 no-gutters mt-2">
+            <form class="form-inline mt-2 mt-md-0" action="/search" method="GET">
+                <div class="input-group data-search-input-wrapper" style="width: 100%">
+                    <input type="text" class="form-control data-search-input typeahead" name="q"
+                           value="<?= resultData.searchTerm?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" style="border-color: #ced4da;"
+                                type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="search-results-container">
+
+        <div class="row mt-4 search-result-type-wrapper person">
+            <div class="col-md-12">
+                <h4>
+
+                    <?= globalHelperFn.lang('Person', session.user.lang); ?>
+                    <a href="/search/person/<?= resultData.searchTerm?>/1"
+                              class="search-count-text">[<?= globalHelperFn.lang('found', session.user.lang); ?> <?= resultData.personData.pagination.totalRowsCount?>
+                        <?= globalHelperFn.lang('times', session.user.lang); ?>]</a>
+                </h4>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <? resultData.personData.rows.forEach(function(rowDatum){?>
+
+                <div class="row-search-result-wrapper">
+                    <a href="/person/<?= rowDatum.id ?>" class="search-result-link">
+                        <?= rowDatum.heading?>
+                    </a>
+                    <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+                </div>
+
+                <? });?>
+
+
+                <div class="mt-3">
+                    <?- include('./../../views/partials/pagination', {pagination: resultData.personData.pagination}); ?>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 search-result-type-wrapper organization">
+            <div class="col-md-12">
+                <h4><?= globalHelperFn.lang('Organization', session.user.lang); ?>
+                    <a href="/search/org/<?= resultData.searchTerm?>/1"
+                       class="search-count-text">[<?= globalHelperFn.lang('found', session.user.lang); ?> <?= resultData.orgData.pagination.totalRowsCount?> <?= globalHelperFn.lang('times', session.user.lang); ?>]</a>
+                </h4>
+            </div>
+
+            <div class="col-md-12">
+
+
+                <? resultData.orgData.rows.forEach(function(rowDatum){?>
+                <div class="row-search-result-wrapper">
+                    <a href="/org/<?= rowDatum.id ?>" class="search-result-link">
+                        <?= rowDatum.heading?>
+                    </a>
+                   <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+                </div>
+                <? });?>
+
+
+                <div class="mt-3">
+                    <?- include('./../../views/partials/pagination', {pagination: resultData.orgData.pagination}); ?>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 search-result-type-wrapper list">
+            <div class="col-md-12">
+                <h4><?= globalHelperFn.lang('Lists', session.user.lang); ?>
+                    <a href="/search/list/<?= resultData.searchTerm?>/1"
+                       class="search-count-text">[<?= globalHelperFn.lang('found', session.user.lang); ?> <?= resultData.listData.pagination.totalRowsCount?> <?= globalHelperFn.lang('times', session.user.lang); ?>]</a>
+                </h4>
+            </div>
+
+            <div class="col-md-12">
+
+                <? resultData.listData.rows.forEach(function(rowDatum){?>
+
+                <div class="row-search-result-wrapper">
+                    <a href="/list/<?= rowDatum.id ?>" class="search-result-link">
+                        <?= rowDatum.heading?>
+                    </a>
+                    <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+                </div>
+
+                <? });?>
+
+
+                <div class="mt-3">
+                    <?- include('./../../views/partials/pagination', {pagination: resultData.listData.pagination}); ?>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 search-result-type-wrapper map">
+            <div class="col-md-12">
+                <h4><?= globalHelperFn.lang('Maps', session.user.lang); ?>
+                    <a href="/search/map/<?= resultData.searchTerm?>/1"
+                       class="search-count-text">[<?= globalHelperFn.lang('found', session.user.lang); ?> <?= resultData.mapData.pagination.totalRowsCount?> <?= globalHelperFn.lang('times', session.user.lang); ?>]</a>
+                </h4>
+            </div>
+
+            <div class="col-md-12">
+
+
+                <? resultData.mapData.rows.forEach(function(rowDatum){?>
+                <div class="row-search-result-wrapper">
+
+                    <a href="/maps/<?= rowDatum.id ?>" class="search-result-link">
+                        <?= rowDatum.heading?>
+                    </a>
+
+                    <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+
+                </div>
+
+                <? });?>
+
+                <div class="mt-3">
+                    <?- include('./../../views/partials/pagination', {pagination: resultData.mapData.pagination}); ?>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 search-result-type-wrapper relationships">
+            <div class="col-md-12">
+                <h4><?= globalHelperFn.lang('Relationships', session.user.lang); ?>
+                    <a href="#"
+                       class="search-count-text">[<?= globalHelperFn.lang('found', session.user.lang); ?> <?= resultData.relationshipData.pagination.totalRowsCount?>
+                        <?= globalHelperFn.lang('times', session.user.lang); ?>]</a>
+                </h4>
+            </div>
+
+            <div class="col-md-12">
+
+                <? resultData.relationshipData.rows.forEach(function(rowDatum){?>
+                <div class="row-search-result-wrapper">
+                    <a href="/relationship/<?= rowDatum.relationship_type; ?>/<?= rowDatum.id; ?>"
+                       class="search-result-link">
+                        <?= rowDatum.entity_name_1; ?>, <?= rowDatum.entity_name_2 ?>
+                        (<?= rowDatum.relationship_type; ?>)
+                    </a>
+                    <div class="search-row-subheading">
+                        <?- rowDatum.subheading?>
+                    </div>
+
+                </div>
+
+                <? });?>
+
+                <div class="mt-3">
+                    <?- include('./../../views/partials/pagination', {pagination: resultData.relationshipData.pagination}); ?>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+<?- include ("../partials/footer.ejs", {
+    jsFilesToInclude: [
+            "https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"
+        ]
+}) ?>
+
+
+<script>
+  // $(function () {
+  //   $(".search-results-container em").mark('<?= resultData.searchTerm?>', {
+  //     debug: false,
+  //     // diacritics: true,
+  //     separateWordSearch: false
+  //   });
+  // })
+</script>

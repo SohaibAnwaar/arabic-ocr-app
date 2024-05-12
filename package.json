@@ -1,0 +1,36 @@
+{
+  "name": "syrgazzsengine",
+  "version": "1.0.0",
+  "description": "syrgazzsengine",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "latest",
+    "async": "latest",
+    "axios": "latest",
+    "bcryptjs": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-mysql-session": "latest",
+    "express-session": "latest",
+    "https": "latest",
+    "junk": "latest",
+    "line-by-line": "latest",
+    "linq": "latest",
+    "moment": "latest",
+    "mysql": "latest",
+    "mysqldump": "latest",
+    "n-readlines": "latest",
+    "nodemon": "latest",
+    "socket.io": "latest",
+    "to": "latest",
+    "update": "latest"
+  },
+  "devDependencies": {}
+}

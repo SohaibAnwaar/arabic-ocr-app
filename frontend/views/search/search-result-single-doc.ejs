@@ -1,0 +1,54 @@
+<?- include ("../partials/header.ejs") ?>
+
+
+<main role="main" class="container ">
+
+   <div class="search-results-container">
+
+        <div class="row mt-4 search-result-type-wrapper person">
+            <div class="col-md-12">
+                <h1>
+                    <?= resultData.searchData.rows[0].heading?>
+                    <span class="ml-2" style="font-size: 12px;">Score: <?= resultData.searchData.rows[0].searchScore?></span>
+                </h1>
+
+            </div>
+
+            <div class="col-md-12">
+
+
+
+                <div class="row-search-result-wrapper">
+
+                    <div class="search-row-subheading">
+                        <?- resultData.searchData.rows[0].subheading?>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+<?- include ("../partials/footer.ejs", {
+    jsFilesToInclude: [
+            "https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"
+        ]
+}) ?>
+
+
+<script>
+  // $(function () {
+  //   $(".search-results-container em").mark('<?= resultData.searchTerm?>', {
+  //     debug: false,
+  //     diacritics: true,
+  //     separateWordSearch: false
+  //   });
+  // })
+</script>
